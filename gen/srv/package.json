@@ -1,0 +1,124 @@
+{
+  "name": "Horvath-Staffing",
+  "version": "1.0.1",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js/hana": "^1",
+    "@sap-cloud-sdk/http-client": "^3.22.2",
+    "@sap/cds": "^8.1.1",
+    "@sap/cds-dk": "~6.3.2",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.7",
+    "@sap/xsenv": "~3.4.0",
+    "@sap/xssec": "^3.6.1",
+    "cors": "~2.8.5",
+    "express": "^4.21.1",
+    "hdb": "~0.19.5",
+    "moment": "~2.29.4",
+    "passport": "~0.6.0"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^8",
+    "@sap/eslint-plugin-cds": "~2.6.0",
+    "cds-swagger-ui-express": "~0.5.0",
+    "eslint": "~8.29.0",
+    "npm-run-all": "~4.1.5",
+    "sqlite3": "~5.1.4"
+  },
+  "engines": {
+    "node": "^18"
+  },
+  "scripts": {
+    "start": "cds run",
+    "lint": "eslint .",
+    "build:cf": "mbt build -p=cf",
+    "deploy:cf": "cf deploy mta_archives/Horvath-Staffing_1.0.1.mtar --retries 0",
+    "bd:cf": "run-s build:cf deploy:cf"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@sap/cds/recommended"
+    ],
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
+    },
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
+    },
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "cds": {
+    "requires": {
+      "[production]": {
+        "db": {
+          "kind": "hana-cloud"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
+      },
+      "db": {
+        "kind": "sql"
+      },
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "rose": {
+              "password": "rose",
+              "roles": [
+                "StaffingApp"
+              ]
+            },
+            "amy": {
+              "password": "amy",
+              "roles": [
+                "OnBehalf"
+              ]
+            },
+            "export": {
+              "password": "export",
+              "roles": [
+                "StaffingDataExport"
+              ]
+            }
+          }
+        }
+      },
+      "YY1_PERSONWAEMAILAPI_CDS_0001": {
+        "kind": "odata-v2",
+        "model": "srv\\external\\YY1_PERSONWAEMAILAPI_CDS_0001",
+        "credentials": {
+          "destination": "HuPS4HC",
+          "path": "/sap/opu/odata/sap/YY1_PERSONWAEMAILAPI_CDS"
+        }
+      },
+      "YY1_EMPLOYEEANSENCEAPI_CDS_0001": {
+        "kind": "odata-v2",
+        "model": "srv\\external\\YY1_EMPLOYEEANSENCEAPI_CDS_0001",
+        "credentials": {
+          "destination": "HuPS4HC",
+          "path": "/sap/opu/odata/sap/YY1_EMPLOYEEANSENCEAPI_CDS"
+        }
+      }
+    }
+  }
+}
