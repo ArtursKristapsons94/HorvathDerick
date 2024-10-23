@@ -568,7 +568,6 @@ function checkMonthsValuesExist(entryData) {
 	if (entryData.Month4) {
 		isMonth4Exist = true;
 	}
-	//test
 
 	return isMonth1Exist || isMonth2Exist || isMonth3Exist || isMonth4Exist;
 }
