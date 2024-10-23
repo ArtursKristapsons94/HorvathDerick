@@ -8,6 +8,14 @@
   </edmx:Reference>
   <edmx:DataServices>
     <Schema Namespace="YY1_PERSONWAEMAILAPI_CDS_0001" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <Annotation Term="Core.Links">
+        <Collection>
+          <Record>
+            <PropertyValue Property="rel" String="author"/>
+            <PropertyValue Property="href" String="https://cap.cloud.sap"/>
+          </Record>
+        </Collection>
+      </Annotation>
       <EntityContainer Name="EntityContainer">
         <EntitySet Name="YY1_PersonWAEmailAPI" EntityType="YY1_PERSONWAEMAILAPI_CDS_0001.YY1_PersonWAEmailAPI"/>
       </EntityContainer>

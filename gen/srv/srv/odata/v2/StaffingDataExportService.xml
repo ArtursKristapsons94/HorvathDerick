@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
     <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
   </edmx:Reference>
-  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
     <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
   </edmx:Reference>
-  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
     <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
   </edmx:Reference>
-  <edmx:DataServices>
-    <Schema Namespace="StaffingDataExportService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="StaffingDataExportService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
       <Annotation Term="Core.Links">
         <Collection>
           <Record>
@@ -19,7 +19,7 @@
           </Record>
         </Collection>
       </Annotation>
-      <EntityContainer Name="EntityContainer">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
         <EntitySet Name="ActualHours" EntityType="StaffingDataExportService.ActualHours"/>
         <EntitySet Name="StaffingData" EntityType="StaffingDataExportService.StaffingData"/>
       </EntityContainer>
@@ -51,7 +51,7 @@
         <Property Name="StaffedEmployee" Type="Edm.String" MaxLength="8" Nullable="false"/>
         <Property Name="StaffedEffort" Type="Edm.Decimal" Precision="15" Scale="3"/>
       </EntityType>
-      <Annotations Target="StaffingDataExportService.EntityContainer/ActualHours">
+      <Annotations Target="StaffingDataExportService.EntityContainer/ActualHours" xmlns="http://docs.oasis-open.org/odata/ns/edm">
         <Annotation Term="Capabilities.DeleteRestrictions">
           <Record Type="Capabilities.DeleteRestrictionsType">
             <PropertyValue Property="Deletable" Bool="false"/>
@@ -68,7 +68,7 @@
           </Record>
         </Annotation>
       </Annotations>
-      <Annotations Target="StaffingDataExportService.EntityContainer/StaffingData">
+      <Annotations Target="StaffingDataExportService.EntityContainer/StaffingData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
         <Annotation Term="Capabilities.DeleteRestrictions">
           <Record Type="Capabilities.DeleteRestrictionsType">
             <PropertyValue Property="Deletable" Bool="false"/>
